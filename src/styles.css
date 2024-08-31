@@ -3,11 +3,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: #f0f4f8;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 main {
@@ -16,33 +17,83 @@ main {
 
 .container {
   background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  padding: 30px;
   width: 80%;
-  max-width: 500px;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #333;
   margin: 0;
 }
 
 p {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: #666;
   margin: 10px 0 0;
 }
 
 /* Animaciones */
-.fade-in {
-  opacity: 0;
-  animation: fadeIn 2s forwards;
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
-@keyframes fadeIn {
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
   to {
+    transform: scale(1);
     opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 1.5s ease-out;
+}
+
+.scale-in {
+  animation: scaleIn 1.5s ease-out;
+}
+
+/* Efectos adicionales */
+.container::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+  opacity: 0.3;
+  transform: scale(0);
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0.3;
   }
 }
